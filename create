@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# Copyright 2015 (c)
+# Gabriel-Andrew Pollo Guilbert
+#
+# This is a simple script that creates a project
+# with the base template.
+#
+# SYNTAX
+#
+# To create a project:
+#     ./create <NAME> <SUBDIR>
+
+NAME=$1
+SUBDIR=$2
+
+if [[ ! -n $NAME ]]; then
+	echo "ERROR: No project name given."
+	exit 1
+fi
+
+if [[ -n $SUBDIR ]]; then
+	TARGET="./$SUBDIR/"
+	mkdir -p $TARGET
+else
+	TARGET="./"
+fi
+
+cp -Rv template $TARGET$NAME
