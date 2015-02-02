@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# Copyright 2015 (c)
+# Gabriel-Andrew Pollo Guilbert
+#
+# This is a simple script that clean the whole
+# tree from unused files.
+#
+# SYNTAX
+#
+# To create a project:
+#     ./clean
+
+for file in $(find ./ -iname "*.o"); do
+	rm -v "$file"
+done
