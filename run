@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# Copyright 2015 (c)
+# Gabriel-Andrew Pollo Guilbert
+#
+# This is a simple script that creates a project
+# with the base template.
+#
+# SYNTAX
+#
+# To create a project:
+#     ./create <PROJECT'S PATH>
+
+PROJECT=$1
+
+if [[ ! -n $PROJECT ]]; then
+	echo "ERROR: No project name given."
+	exit 1
+fi
+
+cd $PROJECT
+
+make
+make run
