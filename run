@@ -3,8 +3,8 @@
 # Copyright 2015 (c)
 # Gabriel-Andrew Pollo Guilbert
 #
-# This is a simple script that creates a project
-# with the base template.
+# This is a simple script that will compile
+# and run a project.
 #
 # SYNTAX
 #
