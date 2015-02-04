@@ -14,3 +14,7 @@
 for file in $(find ./ -iname "*.o"); do
 	rm -v "$file"
 done
+
+for file in $(find ./ -wholename "*/bin/*"); do
+	rm -v "$file"
+done
