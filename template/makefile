@@ -21,6 +21,9 @@ main.o:
 clean:
 	rm -rf $(OBJECTS)
 
+run:
+	exec bin/$(EXEC)
+
 install:
 	cp bin/$(EXEC) $(BINDIR)/$(EXEC)
 
