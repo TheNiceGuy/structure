@@ -8,7 +8,7 @@
 #
 # SYNTAX
 #
-# To create a project:
+# To clean a the whole tree:
 #     ./clean
 
 for file in $(find ./ -iname "*.o"); do
