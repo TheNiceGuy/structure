@@ -21,7 +21,6 @@ using namespace std;
 
 int main() {
     int chiffre;
-    bool borne(true);
 
     cout << "Ce programme demande une note à l'utilisateur et lui donne son résultat." << endl << endl;
 
