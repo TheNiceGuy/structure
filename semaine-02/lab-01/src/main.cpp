@@ -53,7 +53,7 @@ int main() {
     cout << endl << "Merci d'avoir utilisé mon programme." << endl;
 
 #ifdef __linux__
-    cout << "Veuillez appuyer sur une touche pour continuer...";
+    cout << "Veuillez appuyer sur entré pour continuer...";
     cin.get();
 #else
     system("pause");

@@ -38,7 +38,7 @@ int main() {
 
     nombre[0] = getNombre("Veuillez entrer le premier nombre:");
     if(nombre[0] == QUIT) return 0;
-    
+
     nombre[1] = getNombre("Veuillez entrer le deuxième nombre:");
     if(nombre[1] == QUIT) return 0;
 
@@ -75,7 +75,7 @@ int main() {
     cout << endl << "Merci d'avoir utilisé mon programme." << endl;
 
 #ifdef __linux__
-    cout << "Veuillez appuyer sur une touche pour continuer...";
+    cout << "Veuillez appuyer sur entré pour continuer...";
     cin.get();
 #else
     system("pause");

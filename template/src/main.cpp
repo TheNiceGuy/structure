@@ -1,6 +1,6 @@
 /*
  * Auteur:
- * Date  : 
+ * Date  :
  */
 
 #include <iostream>
@@ -10,7 +10,7 @@ using namespace std;
 int main() {
 
 #ifdef __linux__
-    cout << "Veuillez appuyer sur une touche pour continuer...";
+    cout << "Veuillez appuyer sur entré pour continuer...";
     cin.get();
 #else
     system("pause");
