@@ -6,7 +6,11 @@
  */
 
 #include <iostream>
-#include <cstdlib>
+#ifdef __linux__
+    #include <cstdlib>
+#else
+    #include <time>
+#endif
 
 #define QUIT -1
 #define LIMITE 12

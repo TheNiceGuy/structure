@@ -7,7 +7,11 @@
  */
 
 #include <iostream>
-#include <cstdlib>
+#ifdef __linux__
+    #include <cstdlib>
+#else
+    #include <ctime>
+#endif
 #include "jeuDevine.h"
 
 using namespace std;
