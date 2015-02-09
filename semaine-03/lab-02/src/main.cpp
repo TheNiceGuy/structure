@@ -26,6 +26,8 @@ int main() {
             cout << "Desirez-vous jouer encore? (y ou n)? ";
             cin >> choix;
             cin.ignore();
+
+            // regarde le choix (y ou n)
             switch(choix) {
             case 'y':
             case 'Y':
