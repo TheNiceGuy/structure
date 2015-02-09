@@ -33,7 +33,7 @@ int main() {
     int nombre[2];
     int resultat;
 
-    cout << "Ce programme simule une calculatrice simple d'entiers positifs." <<
+    cout << "Ce programme simule une calculatrice simple d'entiers positifs. " <<
             "Pour quitter, il suffit d'entrer " << QUIT << " comme nombre." << endl << endl;
 
     nombre[0] = getNombre("Veuillez entrer le premier nombre:");
