@@ -21,6 +21,9 @@ main.o:
 random.o:
 	$(CC) -o $(SRCDIR)/random.o $(SRCDIR)/random.cpp $(CCFLAGS)
 
+mkdir:
+	@mkdir -p bin
+
 clean:
 	rm -rf $(OBJECTS)
 

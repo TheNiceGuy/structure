@@ -18,6 +18,9 @@ $(EXEC): $(OBJECTS)
 main.o:
 	$(CC) -o $(SRCDIR)/main.o $(SRCDIR)/main.cpp $(CCFLAGS)
 
+mkdir:
+	@mkdir -p bin
+
 clean:
 	rm -rf $(OBJECTS)
 

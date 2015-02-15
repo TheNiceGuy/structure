@@ -21,6 +21,9 @@ main.o:
 jeuDevine.o:
 	$(CC) -o $(SRCDIR)/jeuDevine.o $(SRCDIR)/jeuDevine.cpp $(CCFLAGS)
 
+mkdir:
+	@mkdir -p bin
+
 clean:
 	rm -rf $(OBJECTS)
 
