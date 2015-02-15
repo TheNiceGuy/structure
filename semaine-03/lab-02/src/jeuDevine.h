@@ -3,7 +3,8 @@
 
 #define QUIT -1
 
-int getNumber();
-int playGame();
+void setLimit(int& min, int& max);
+int getNumber(int min, int max);
+int playGame(int min, int max);
 
 #endif

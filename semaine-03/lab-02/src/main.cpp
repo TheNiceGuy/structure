@@ -19,11 +19,13 @@ using namespace std;
 int main() {
     char choix;
     int ret;
+    int min, max;
 
     srand(time(NULL));
+    setLimit(min, max);
 
     do {
-        ret = playGame();
+        ret = playGame(min, max);
         if(ret != QUIT) {
             cout << endl << "Vous avez eu besoin de " << ret;
             cout << (ret>1?" tentatives.":" tentative.") << endl;
