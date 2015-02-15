@@ -20,5 +20,6 @@ fi
 
 cd $PROJECT
 
+make mkdir
 make
 make run
