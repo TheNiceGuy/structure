@@ -1,3 +1,8 @@
+/*
+* Auteur: Gabriel-Andrew Pollo Guilbert
+* Date  : 15 Février 2015
+*/
+
 #ifndef JEU_DEVINE_H
 #define JEU_DEVINE_H
 

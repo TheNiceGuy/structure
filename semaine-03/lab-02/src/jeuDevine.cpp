@@ -1,5 +1,10 @@
+/*
+ * Auteur: Gabriel-Andrew Pollo Guilbert
+ * Date  : 15 Février 2015
+ */
+
 #include <iostream>
-#include <cstdlib>
+#include <stdlib.h>
 #include "jeuDevine.h"
 
 #define LIMITE 1000
@@ -28,7 +33,7 @@ void setLimit(int& min, int& max) {
 }
 
 /*
- * Cette fonction retourne un nombre entre min et max exclusivement.
+ * Cette fonction retourne un nombre entre min et max inclusivement.
  */
 int getNumber(int min, int max) {
     return rand()%(max+1-min)+min;

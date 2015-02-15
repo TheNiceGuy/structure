@@ -1,16 +1,15 @@
 /*
  * Auteur: Gabriel-Andrew Pollo Guilbert
- * Date  : 9 Février 2015
+ * Date  : 15 Février 2015
  *
  * Ce jeu demande un nombre entre des bornes à l'utilisateur en
  * lui donnant des indices.
  */
 
 #include <iostream>
-#ifdef __linux__
-    #include <cstdlib>
-#else
-    #include <ctime>
+#include <stdlib.h>
+#ifndef __linux__
+    #include <time.h>
 #endif
 #include "jeuDevine.h"
 
@@ -25,6 +24,7 @@ int main() {
     setLimit(min, max);
 
     do {
+        cout << endl;
         ret = playGame(min, max);
         if(ret != QUIT) {
             cout << endl << "Vous avez eu besoin de " << ret;

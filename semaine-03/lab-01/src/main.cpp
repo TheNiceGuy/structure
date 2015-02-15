@@ -1,15 +1,14 @@
 /*
  * Auteur: Gabriel-Andrew Pollo Guilbert
- * Date  : 9 Février 2015
+ * Date  : 15 Février 2015
  *
  * Ce programme demande des multiplications l'utilisateur.
  */
 
 #include <iostream>
-#ifdef __linux__
-    #include <cstdlib>
-#else
-    #include <time>
+#include <stdlib.h>
+#ifndef __linux__
+    #include <time.h>
 #endif
 
 #define QUIT -1
@@ -28,7 +27,7 @@ int getNumber() {
  * Cette fonction simule un jeu d'essaie pour une multiplication.
  */
 int jeu() {
-    bool fin(false);
+    bool fin;
     int nombre[2];
     int resultat;
     int reponse;
@@ -60,8 +59,6 @@ int jeu() {
 }
 
 int main() {
-    bool fin(false);
-
     cout << "Ce programme demande des multiplications à l'utilisateur. " <<
             "Pour quitter, il suffit d'entrer " << QUIT << " comme nombre." << endl << endl;
 
