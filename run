@@ -8,8 +8,8 @@
 #
 # SYNTAX
 #
-# To create a project:
-#     ./create <PROJECT'S PATH>
+# To run a project:
+#     ./run <PROJECT'S PATH>
 
 PROJECT=$1
 
