@@ -9,21 +9,53 @@
 # SYNTAX
 #
 # To create a project:
-#     ./create <NAME> <SUBDIR>
+#     ./create [OPTIONS...] <TARGET>
 
-NAME=$1
-SUBDIR=$2
+SUCCESS=0
+ERROR=1
+TARGET=
 
-if [[ ! -n $NAME ]]; then
-	echo "ERROR: No project name given."
-	exit 1
-fi
+function help {
+	echo -e "Usage: ./create [OPTIONS...] <TARGET>"
+	echo -e ""
+	echo -e "Options:"
+	echo -e "\t-h, --help:\t show this message"
+}
 
-if [[ -n $SUBDIR ]]; then
-	TARGET="./$SUBDIR/"
-	mkdir -p $TARGET
-else
-	TARGET="./"
-fi
+function parse {
+	for ARG in "$@"; do
+		case "$ARG" in
+		"-h" | "--help")
+			help
+			return $ERROR
+			;;
+		*)
+			if [[ $ARG == ${!#} ]]; then
+				TARGET=${!#}
+			else
+				echo -e "Unrecognized option '$ARG'"
+				echo -e "Try '--help' for more information."
+				return $ERROR
+			fi
+			;;
+		esac
+	done
 
-cp -Rv template $TARGET$NAME
+	return $SUCCESS
+}
+
+function main {
+	parse $@
+	if [[ $? == $ERROR ]]; then
+		return $ERROR
+	fi
+
+	if [[ -d $TARGET ]]; then
+		exit $ERROR
+	else
+		mkdir -p $TARGET
+		cp -Rv template $TARGET
+	fi
+}
+
+main $@
