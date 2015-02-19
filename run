@@ -22,4 +22,9 @@ cd $PROJECT
 
 make mkdir
 make
-make run
+echo
+if [[ $? == 0 ]]; then
+	make run
+else
+	echo "ERROR: The project didn't compile."
+fi
