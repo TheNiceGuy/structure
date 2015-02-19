@@ -1,3 +1,4 @@
 *.h text
 *.cpp text
-*.html binary
+
+makefile linguist-language=Makefile
