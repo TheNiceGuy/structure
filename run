@@ -73,6 +73,7 @@ function main {
 		make mkdir
 	fi
 
+	make clean
 	make
 	if [[ $? == 0 ]]; then
 		make $MAKECMD
