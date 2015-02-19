@@ -25,7 +25,7 @@ $(EXEC): $(OBJECTS)
 	$(LD) -o bin/$(EXEC) $(OBJECTS) $(LDFLAGS)
 
 %.o: %.cpp
-		$(CC) -o $@ -c $< $(CCFLAGS)
+	$(CC) -o $@ -c $< $(CCFLAGS)
 
 mkdir:
 	@mkdir -p bin
