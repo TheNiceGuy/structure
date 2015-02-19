@@ -13,8 +13,9 @@
 
 SUCCESS=0
 ERROR=1
-PROJECT=
-MAKECMD=run
+PROJECT=""
+MAKECMD="run "
+MAKEOPTS=""
 
 function help {
 	echo -e "Usage: ./run [OPTIONS...] <PROJECT'S PATH>"
@@ -23,16 +24,25 @@ function help {
 	echo -e "\t-r, --run:\t run the binary [default]"
 	echo -e "\t-d, --debug:\t run the binary in debugging"
 	echo -e "\t-h, --help:\t show this message"
+	echo -e ""
+	echo -e "Environment variables:"
+	echo -e "\tCC:\tc++ compiler"
+	echo -e "\tLD:\tc++ linker"
+	echo -e "\tDB:\tbinary debugger"
 }
 
-function parse {
+function parse_arg {
 	for ARG in "$@"; do
 		case "$ARG" in
 		"-r" | "--run")
-			MAKECMD=run
+			MAKECMD="run "
+			export CCFLAGS+=
+			export LDFLAGS+=
 			;;
 		"-d" | "--debug")
-			MAKECMD=debug
+			MAKECMD="debug "
+			export CCFLAGS=-g
+			export LDFLAGS=
 			;;
 		"-h" | "--help")
 			help
@@ -53,8 +63,24 @@ function parse {
 	return $SUCCESS
 }
 
+function parse_env {
+	if [[ -n $CC ]]; then
+		MAKEOPTS+="CC=$CC "
+	fi
+
+	if [[ -n $LD ]]; then
+		MAKEOPTS+="LD=$LD "
+	fi
+
+	if [[ -n $DB ]]; then
+		MAKECMD+="DB=$DB "
+	fi
+}
+
 function main {
-	parse $@
+	parse_arg $@
+	parse_env
+
 	if [[ $? == $ERROR ]]; then
 		return $ERROR
 	fi
@@ -74,7 +100,7 @@ function main {
 	fi
 
 	make clean
-	make
+	make $MAKEOPTS
 	if [[ $? == 0 ]]; then
 		make $MAKECMD
 	else
