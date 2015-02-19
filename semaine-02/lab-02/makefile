@@ -1,9 +1,17 @@
-CC=g++
-LD=g++
-DB=valgrind
+ifndef $(CC)
+	CC=g++
+endif
 
-CCFLAGS=-W -Wall -pedantic
-LDFLAGS=
+ifndef $(LD)
+	LD=g++
+endif
+
+ifndef $(DB)
+	DB=valgrind
+endif
+
+CCFLAGS+=-Wall -pedantic
+LDFLAGS+=
 
 EXEC=main
 BINDIR=/usr/bin
@@ -14,10 +22,10 @@ OBJECTS=$(SRCDIR)/main.o
 all: $(EXEC)
 
 $(EXEC): $(OBJECTS)
-	$(CC) -o bin/$(EXEC) $(OBJECTS) $(LDFLAGS)
+	$(LD) -o bin/$(EXEC) $(OBJECTS) $(LDFLAGS)
 
-main.o:
-	$(CC) -o $(SRCDIR)/main.o $(SRCDIR)/main.cpp $(CCFLAGS)
+%.o: %.cpp
+		$(CC) -o $@ -c $< $(CCFLAGS)
 
 mkdir:
 	@mkdir -p bin
