@@ -9,23 +9,77 @@
 # SYNTAX
 #
 # To run a project:
-#     ./run <PROJECT'S PATH>
+#     ./run [OPTIONS...] <PROJECT'S PATH>
 
-PROJECT=$1
+SUCCESS=0
+ERROR=1
+PROJECT=
+MAKECMD=run
 
-if [[ ! -n $PROJECT ]]; then
-	echo "ERROR: No project name given."
-	exit 1
-fi
+function help {
+	echo -e "Usage: ./run [OPTIONS...] <PROJECT'S PATH>"
+	echo -e ""
+	echo -e "Options:"
+	echo -e "\t-r, --run:\t run the binary [default]"
+	echo -e "\t-d, --debug:\t run the binary in debugging"
+	echo -e "\t-h, --help:\t show this message"
+}
 
-cd $PROJECT
+function parse {
+	for ARG in "$@"; do
+		case "$ARG" in
+		"-r" | "--run")
+			MAKECMD=run
+			;;
+		"-d" | "--debug")
+			MAKECMD=debug
+			;;
+		"-h" | "--help")
+			help
+			return $ERROR
+			;;
+		*)
+			if [[ $ARG == ${!#} ]]; then
+				PROJECT=${!#}
+			else
+				echo -e "Unrecognized option '$ARG'"
+				echo -e "Try '--help' for more information."
+				return $ERROR
+			fi
+			;;
+		esac
+	done
 
-make mkdir
-make
+	return $SUCCESS
+}
 
-if [[ $? == 0 ]]; then
-	echo
-	make run
-else
-	echo "ERROR: The project didn't compile."
-fi
+function main {
+	parse $@
+	if [[ $? == $ERROR ]]; then
+		return $ERROR
+	fi
+
+	if [[ ! -d $PROJECT ]]; then
+		echo -e "ERROR: The specified folder doesn't exist."
+		return $ERROR
+	else
+		cd $PROJECT
+	fi
+
+	if [[ ! -f ./makefile ]]; then
+		echo -e "ERROR: No makefile found."
+		return $ERROR
+	else
+		make mkdir
+	fi
+
+	make
+	if [[ $? == 0 ]]; then
+		make $MAKECMD
+	else
+		echo "ERROR: The project didn't compile."
+		exit $ERROR
+	fi
+}
+
+main $@
