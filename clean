@@ -9,12 +9,47 @@
 # SYNTAX
 #
 # To clean a the whole tree:
-#     ./clean
+#     ./clean [OPTIONS...]
 
-for file in $(find ./ -iname "*.o"); do
-	rm -v "$file"
-done
+SUCCESS=0
+ERROR=1
+TARGET=
 
-for file in $(find ./ -wholename "*/bin/*"); do
-	rm -v "$file"
-done
+function help {
+	echo -e "Usage: ./clean [OPTIONS...]"
+	echo -e ""
+	echo -e "Options:"
+	echo -e "\t-h, --help:\t show this message"
+}
+
+function parse {
+	for ARG in "$@"; do
+		case "$ARG" in
+		"-h" | "--help")
+			help
+			return $ERROR
+			;;
+		*)
+			echo -e "Unrecognized option '$ARG'"
+			echo -e "Try '--help' for more information."
+			return $ERROR
+			;;
+		esac
+	done
+
+	return $SUCCESS
+}
+
+function main {
+	parse $@
+
+	for file in $(find ./ -iname "*.o"); do
+		rm -v "$file"
+	done
+
+	for file in $(find ./ -wholename "*/bin/*"); do
+		rm -v "$file"
+	done
+}
+
+main $@
