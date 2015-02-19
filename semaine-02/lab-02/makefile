@@ -1,5 +1,6 @@
 CC=g++
 LD=g++
+DB=valgrind
 
 CCFLAGS=-W -Wall -pedantic
 LDFLAGS=
@@ -26,6 +27,9 @@ clean:
 
 run:
 	exec bin/$(EXEC)
+
+debug:
+	$(DB) bin/$(EXEC)
 
 install:
 	cp bin/$(EXEC) $(BINDIR)/$(EXEC)
