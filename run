@@ -110,8 +110,8 @@ function parse_env {
 		DB=$DEFAULT_DB
 	fi
 
-	if [[ -n $OS ]]; then
-		if [[ $OS == "win32" ]]; then
+	if [[ -n $TARGET ]]; then
+		if [[ $TARGET == "win32" ]]; then
 			CC="i686-w64-mingw32-g++"
 			LD="i686-w64-mingw32-g++"
 			LDFLAGS="-static "
