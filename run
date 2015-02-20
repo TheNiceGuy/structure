@@ -13,9 +13,10 @@
 
 SUCCESS=0
 ERROR=1
-PROJECT=""
+PROJECT=
 MAKECMD="run "
 MAKEOPTS=""
+EXECUTE=true
 
 function help {
 	echo -e "Usage: ./run [OPTIONS...] <PROJECT'S PATH>"
@@ -23,6 +24,7 @@ function help {
 	echo -e "Options:"
 	echo -e "\t-r, --run:\t run the binary [default]"
 	echo -e "\t-d, --debug:\t run the binary in debugging"
+	echo -e "\t-b, --build:\t only build the project"
 	echo -e "\t-h, --help:\t show this message"
 	echo -e ""
 	echo -e "Environment variables:"
@@ -43,6 +45,9 @@ function parse_arg {
 			MAKECMD="debug "
 			export CCFLAGS=-g
 			export LDFLAGS=
+			;;
+		"-b" | "--build")
+			EXECUTE=false
 			;;
 		"-h" | "--help")
 			help
@@ -79,11 +84,11 @@ function parse_env {
 
 function main {
 	parse_arg $@
-	parse_env
-
 	if [[ $? == $ERROR ]]; then
 		return $ERROR
 	fi
+
+	parse_env
 
 	if [[ ! -d $PROJECT ]]; then
 		echo -e "ERROR: The specified folder doesn't exist."
@@ -102,7 +107,9 @@ function main {
 	make clean
 	make $MAKEOPTS
 	if [[ $? == 0 ]]; then
-		make $MAKECMD
+		if [[ $EXECUTE == true ]]; then
+			make $MAKECMD
+		fi
 	else
 		echo "ERROR: The project didn't compile."
 		exit $ERROR
