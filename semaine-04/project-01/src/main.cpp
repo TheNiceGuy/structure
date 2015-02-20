@@ -15,7 +15,7 @@ using namespace std;
 double average(vector<double> const& tab) {
     int i, sum(0);
 
-    for(i = 0; i < tab.size(); i++) {
+    for(i = 0; i < (int)tab.size(); i++) {
         sum += tab[i];
     }
 
