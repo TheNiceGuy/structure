@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <time.h>
 #include "random.h"
 
 #define THROW_NUMBER 500
