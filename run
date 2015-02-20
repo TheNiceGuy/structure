@@ -14,9 +14,11 @@
 SUCCESS=0
 ERROR=1
 PROJECT=
-MAKECMD="run "
+MAKECMD=""
 MAKEOPTS=""
+
 EXECUTE=true
+DEBUG=false
 
 DEFAULT_CC="g++"
 DEFAULT_LD="g++"
@@ -49,10 +51,12 @@ function parse_arg {
 	for ARG in "$@"; do
 		case "$ARG" in
 		"-r" | "--run")
-			MAKECMD="run "
+			EXECUTE=true
+			DEBUG=false
 			;;
 		"-d" | "--debug")
-			MAKECMD="debug "
+			EXECUTE=true
+			DEBUG=true
 			CCFLAGS=-g
 			;;
 		"-b" | "--build")
@@ -96,7 +100,14 @@ function parse_env {
 			LD="i686-w64-mingw32-g++"
 			LDFLAGS="-static "
 			EXECCMD="wine"
+			DEBUG=false
 		fi
+	fi
+
+	if [[ $DEBUG == true ]]; then
+		MAKECMD="debug "
+	elif [[ $EXECUTE == true ]]; then
+		MAKECMD="run "
 	fi
 
 	MAKEOPTS="CC=$CC LD=$LD"
