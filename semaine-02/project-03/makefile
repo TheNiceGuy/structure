@@ -10,6 +10,10 @@ ifndef $(DB)
 	DB=valgrind
 endif
 
+ifndef $(EXECCMD)
+	EXECCMD=exec
+endif
+
 CCFLAGS+=-Wall -pedantic
 LDFLAGS+=
 
@@ -34,7 +38,7 @@ clean:
 	rm -rf $(OBJECTS)
 
 run:
-	exec bin/$(EXEC)
+	$(EXECCMD) ./bin/$(EXEC)
 
 debug:
 	$(DB) bin/$(EXEC)
