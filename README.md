@@ -1,12 +1,12 @@
 structure
 =======
 
-This repository contains all of the project that I made during my c++ class.
+This repository contains all projects that I made during my c++ class.
 
 Dependencies
 ------------
 
-It order to use all the script, you'll need to install those dependencies:
+It order to use all scripts to work, you'll need to install those dependencies:
 
 - gcc
 - make
@@ -18,7 +18,7 @@ It order to use all the script, you'll need to install those dependencies:
 Usage
 -----
 
-There is a couple of scripts in order to facilitate the workflow. The script `create` creates a project based on the template folder. The script `run` can execute a project from the root of the repository. Finaly, the script `clean` removes unused files that are left everywhere during the compilation process.
+There are a couple of scripts in order to facilitate the workflow. The script `create` creates a project based on the template folder. The script `run` can execute a project from the root of the repository. Finaly, the script `clean` removes unused files that are left everywhere during the compilation process.
 
 The most important script is `run`. It takes the path of a folder containing a `makefile` like this:
 
@@ -28,7 +28,7 @@ It supports some options too. It can debug using `valgrind` as follow:
 
 	$ ./run --debug semaine-04/project-02
 
-If needed, it can compile all the project in the repository with `--buildall`. It does not take a path since it does not execute something:
+If needed, it can compile all projects in the repository with `--buildall`. It does not take a path since it does not execute something:
 
 	$ ./run --buildall
 
@@ -44,7 +44,7 @@ Which can be written into a line:
 
 The debugger can be changed from `valgrind` to `gdb` using that command:
 
-	$ DB="gdb" ./run ./run semaine-03/lab-02
+	$ DB="gdb" ./run semaine-03/lab-02
 
 It can cross-compile for Windows using `mingw`. Then, it executes the Windows binary with `wine`. It does not support debugging. This example would override any `$CC` or `$LD` that has been set:
 
