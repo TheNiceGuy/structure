@@ -18,10 +18,15 @@ MAKECMD="run "
 MAKEOPTS=""
 EXECUTE=true
 
-export CC+=""
-export LD+=""
-export LDFLAGS+=""
-export CCFLAGS+=""
+DEFAULT_CC="g++"
+DEFAULT_LD="g++"
+DEFAULT_DB="valgrind"
+DEFAULT_EXECCMD="exec"
+
+export CC
+export LD
+export LDFLAGS
+export CCFLAGS
 
 function help {
 	echo -e "Usage: ./run [OPTIONS...] <PROJECT'S PATH>"
@@ -45,13 +50,10 @@ function parse_arg {
 		case "$ARG" in
 		"-r" | "--run")
 			MAKECMD="run "
-			export CCFLAGS+=
-			export LDFLAGS+=
 			;;
 		"-d" | "--debug")
 			MAKECMD="debug "
-			export CCFLAGS=-g
-			export LDFLAGS=
+			CCFLAGS=-g
 			;;
 		"-b" | "--build")
 			EXECUTE=false
@@ -76,26 +78,29 @@ function parse_arg {
 }
 
 function parse_env {
-	if [[ -n $CC ]]; then
-		MAKEOPTS+="CC=$CC "
+	if [[ ! -n $CC ]]; then
+		CC=$DEFAULT_CC
 	fi
 
-	if [[ -n $LD ]]; then
-		MAKEOPTS+="LD=$LD "
+	if [[ ! -n $LD ]]; then
+		LD=$DEFAULT_LD
 	fi
 
-	if [[ -n $DB ]]; then
-		MAKECMD+="DB=$DB "
+	if [[ ! -n $DB ]]; then
+		DB=$DEFAULT_DB
 	fi
 
 	if [[ -n $OS ]]; then
 		if [[ $OS == "win32" ]]; then
-			MAKEOPTS+="CC=i686-w64-mingw32-g++ "
-			MAKEOPTS+="LD=i686-w64-mingw32-g++ "
+			CC="i686-w64-mingw32-g++"
+			LD="i686-w64-mingw32-g++"
 			LDFLAGS="-static "
+			EXECCMD="wine"
 		fi
-
 	fi
+
+	MAKEOPTS="CC=$CC LD=$LD"
+	MAKECMD+="DB=$DB EXECCMD=$EXECCMD"
 }
 
 function main {
