@@ -17,6 +17,8 @@ PROJECT=
 MAKECMD=""
 MAKEOPTS=""
 
+BUILD=true
+BUILDALL=false
 EXECUTE=true
 DEBUG=false
 
@@ -38,6 +40,7 @@ function help {
 	echo -e "\t-d, --debug:\t run the binary in debugging"
 	echo -e "\t-b, --build:\t only build the project"
 	echo -e "\t-h, --help:\t show this message"
+	echo -e "\t--buildall:\t build all project"
 	echo -e ""
 	echo -e "Environment variables:"
 	echo -e "\tCC:\tc++ compiler"
@@ -51,16 +54,29 @@ function parse_arg {
 	for ARG in "$@"; do
 		case "$ARG" in
 		"-r" | "--run")
+			BUILD=true
+			BUILDALL=false
 			EXECUTE=true
 			DEBUG=false
 			;;
 		"-d" | "--debug")
+			BUILD=true
+			BUILDALL=false
 			EXECUTE=true
 			DEBUG=true
 			CCFLAGS=-g
 			;;
 		"-b" | "--build")
+			BUILD=true
+			BUILDALL=false
 			EXECUTE=false
+			DEBUG=false
+			;;
+		"--buildall")
+			BUILD=false
+			BUILDALL=true
+			EXECUTE=false
+			DEBUG=false
 			;;
 		"-h" | "--help")
 			help
@@ -114,6 +130,22 @@ function parse_env {
 	MAKECMD+="DB=$DB EXECCMD=$EXECCMD"
 }
 
+function build {
+	make clean
+	make $MAKEOPTS
+}
+
+function buildall {
+	DIR=$(pwd)
+
+	find ./ -iname "makefile" | sed 's/makefile//g' | while read FOLDER; do
+		cd "$FOLDER"
+		build
+		echo
+		cd "$DIR"
+	done
+}
+
 function main {
 	parse_arg $@
 	if [[ $? == $ERROR ]]; then
@@ -121,30 +153,32 @@ function main {
 	fi
 
 	parse_env
-
-	if [[ ! -d $PROJECT ]]; then
-		echo -e "ERROR: The specified folder doesn't exist."
-		return $ERROR
-	else
-		cd $PROJECT
-	fi
-
-	if [[ ! -f ./makefile ]]; then
-		echo -e "ERROR: No makefile found."
-		return $ERROR
-	else
-		make mkdir
-	fi
-
-	make clean
-	make $MAKEOPTS
-	if [[ $? == 0 ]]; then
-		if [[ $EXECUTE == true ]]; then
-			make $MAKECMD
+	if [[ $BUILD == true ]]; then
+		if [[ ! -d $PROJECT ]]; then
+			echo -e "ERROR: The specified folder doesn't exist."
+			return $ERROR
+		else
+			cd $PROJECT
 		fi
-	else
-		echo "ERROR: The project didn't compile."
-		exit $ERROR
+
+		if [[ ! -f ./makefile ]]; then
+			echo -e "ERROR: No makefile found."
+			return $ERROR
+		else
+			make mkdir
+		fi
+
+		build
+		if [[ $? == 0 ]]; then
+			if [[ $EXECUTE == true ]]; then
+				make $MAKECMD
+			fi
+		else
+			echo "ERROR: The project didn't compile."
+			exit $ERROR
+		fi
+	elif [[ $BUILDALL == true ]]; then
+		buildall
 	fi
 }
 
