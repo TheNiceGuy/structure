@@ -47,7 +47,7 @@ function help {
 	echo -e "\tLD:\tc++ linker"
 	echo -e "\tDB:\tbinary debugger"
 	echo -e "\tTARGET:\toperating system [linux]"
-	echo -e "\t\tsupported: linux, win32"
+	echo -e "\t\tsupported: linux, win32, win64"
 }
 
 function parse_arg {
@@ -117,6 +117,15 @@ function parse_env {
 			LDFLAGS="-static "
 			EXECCMD="wine"
 			DEBUG=false
+		elif [[ $TARGET == "win64" ]]; then
+			CC="x86_64-w64-mingw32-g++"
+			LD="x86_64-w64-mingw32-g++"
+			LDFLAGS="-static "
+			EXECCMD="wine64"
+			DEBUG=false
+		else
+			echo -e "ERROR: The specified target is not supported."
+			return $ERROR
 		fi
 	fi
 
@@ -153,6 +162,10 @@ function main {
 	fi
 
 	parse_env
+	if [[ $? == $ERROR ]]; then
+		return $ERROR
+	fi
+
 	if [[ $BUILD == true ]]; then
 		if [[ ! -d $PROJECT ]]; then
 			echo -e "ERROR: The specified folder doesn't exist."
