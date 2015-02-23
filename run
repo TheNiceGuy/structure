@@ -140,6 +140,7 @@ function parse_env {
 }
 
 function build {
+	make mkdir
 	make clean
 	make $MAKEOPTS
 }
@@ -177,8 +178,6 @@ function main {
 		if [[ ! -f ./makefile ]]; then
 			echo -e "ERROR: No makefile found."
 			return $ERROR
-		else
-			make mkdir
 		fi
 
 		build
