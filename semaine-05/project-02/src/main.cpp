@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdlib.h>
+#include <string.h>
 
 #define FILLED "**"
 #define SPACED "  "
@@ -74,12 +76,15 @@ void draw(int size) {
     }
 }
 
-int main() {
-    int i;
+int main(int argc, char *argv[]) {
+    int i, size;
 
-    for(i = 0; i < 40; i = i+2) {
-        draw(i);
-        cout << endl;
+    for(i = 0; i < argc; i++) {
+        if(strcmp(argv[i], "-s") == 0)
+            size = atoi(argv[i+1]);
     }
+
+    draw(size);
+
     return 0;
 }
