@@ -54,7 +54,7 @@ function main {
 		exit $ERROR
 	else
 		mkdir -p $TARGET
-		cp -Rv template $TARGET
+		cp -Rv template/* $TARGET
 	fi
 }
 
