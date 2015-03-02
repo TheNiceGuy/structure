@@ -43,11 +43,11 @@ int main() {
     cout << "Resultats pour ce groupe :" << endl;
     cout << "__________________________" << endl;
     for(counter = 0; counter < (int)note.size(); counter++) {
-        cout << "Étudiant #" << counter+1 << ":\t"<< note[counter] << "%" << endl;
+        cout << "Étudiant #" << counter+1 << ":" << setw(5) << note[counter] << "%" << endl;
     }
     // afficher la moyenne des notes
     cout << "__________________________" << endl;
-    cout << "Moyenne:\t" << moyenne << "%" << endl;
+    cout << "Moyenne:" << setw(9) << moyenne << "%" << endl;
 
     quit();
     return 0;
