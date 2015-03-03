@@ -31,7 +31,7 @@ void jouerJeu() {
         cout << "La partie est nulle!" << endl;
 }
 
-void initialiserJeu(char jeu[TAILLE_X][TAILLE_X]) {
+void initialiserJeu(char jeu[TAILLE_X][TAILLE_Y]) {
     int x, y;
 
     /*
@@ -39,11 +39,11 @@ void initialiserJeu(char jeu[TAILLE_X][TAILLE_X]) {
      * définit dans le fichier config.h.
      */
     for(x = 0; x < TAILLE_X; x++)
-        for(y = 0; y < TAILLE_X; y++)
+        for(y = 0; y < TAILLE_Y; y++)
             jeu[x][y] = VIDE;
 }
 
-void afficherJeu(char jeu[TAILLE_X][TAILLE_X]) {
+void afficherJeu(char jeu[TAILLE_X][TAILLE_Y]) {
     int x, y;
 
     /*
@@ -52,13 +52,13 @@ void afficherJeu(char jeu[TAILLE_X][TAILLE_X]) {
      * config.h.
      */
     for(x = 0; x < TAILLE_X; x++) {
-        for(y = 0; y < TAILLE_X; y++)
+        for(y = 0; y < TAILLE_Y; y++)
             cout << SEPARATION << jeu[x][y];
         cout << SEPARATION << endl;
     }
 }
 
-void demanderPosition(char jeu[TAILLE_X][TAILLE_X], int joueur) {
+void demanderPosition(char jeu[TAILLE_X][TAILLE_Y], int joueur) {
     int x, y;
 
     /*
@@ -115,7 +115,7 @@ void prochainJoueur(int &joueur) {
         joueur = 0;
 }
 
-bool jeuGagnant(char jeu[TAILLE_X][TAILLE_X], int joueur) {
+bool jeuGagnant(char jeu[TAILLE_X][TAILLE_Y], int joueur) {
     /*
      * Vérifier chacun leur tour les trois types de lignes.
      * On quitte la fonction dès qu'une ligne est trouvée.

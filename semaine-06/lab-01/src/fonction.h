@@ -21,7 +21,7 @@ void jouerJeu();
  * Entrée: le tableau du jeu
  * Sortie:
  */
-void initialiserJeu(char jeu[TAILLE_X][TAILLE_X]);
+void initialiserJeu(char jeu[TAILLE_X][TAILLE_Y]);
 
 /*
  * Cette fonction affiche le jeu dans la console.
@@ -29,7 +29,7 @@ void initialiserJeu(char jeu[TAILLE_X][TAILLE_X]);
  * Entrée: le tableau du jeu
  * Sortie:
  */
-void afficherJeu(char jeu[TAILLE_X][TAILLE_X]);
+void afficherJeu(char jeu[TAILLE_X][TAILLE_Y]);
 
 /*
  * Cette fonction demande une position pour un mouvement.
@@ -39,7 +39,7 @@ void afficherJeu(char jeu[TAILLE_X][TAILLE_X]);
  * Entrée: le tableau du jeu, le numéro du joueur
  * Sortie:
  */
-void demanderPosition(char jeu[TAILLE_X][TAILLE_X], int joueur);
+void demanderPosition(char jeu[TAILLE_X][TAILLE_Y], int joueur);
 
 /*
  * Cette fonction change le numéro du joueur actif.
@@ -57,7 +57,7 @@ void prochainJoueur(int &joueur);
  * Entrée: le tableau du jeu, le numéro du joueur
  * Sortie: un booléen
  */
-bool jeuGagnant(char jeu[TAILLE_X][TAILLE_X], int joueur);
+bool jeuGagnant(char jeu[TAILLE_X][TAILLE_Y], int joueur);
 
 
 #endif

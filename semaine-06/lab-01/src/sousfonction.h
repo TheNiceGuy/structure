@@ -13,7 +13,7 @@ using namespace std;
            un coordonnées en y
  * Sortie: un booléen
  */
-bool caseVide(char jeu[TAILLE_X][TAILLE_X], int x, int y);
+bool caseVide(char jeu[TAILLE_X][TAILLE_Y], int x, int y);
 
 /*
  * Cette fonction vérifie si le jeu est plein.
@@ -21,7 +21,7 @@ bool caseVide(char jeu[TAILLE_X][TAILLE_X], int x, int y);
  * Entrée: le tableau du jeu
  * Sortie: un booléen
  */
-bool jeuPlein(char jeu[TAILLE_X][TAILLE_X]);
+bool jeuPlein(char jeu[TAILLE_X][TAILLE_Y]);
 
 /*
  * Cette fonction vérifie si un joueur a une ligne
@@ -30,7 +30,7 @@ bool jeuPlein(char jeu[TAILLE_X][TAILLE_X]);
  * Entrée: le tableau du jeu, le numéro du joueur
  * Sortie: un booléen
  */
-bool gagnantLigne(char jeu[TAILLE_X][TAILLE_X], int joueur);
+bool gagnantLigne(char jeu[TAILLE_X][TAILLE_Y], int joueur);
 
 /*
  * Cette fonction vérifie si un joueur a une colonne
@@ -39,7 +39,7 @@ bool gagnantLigne(char jeu[TAILLE_X][TAILLE_X], int joueur);
  * Entrée: le tableau du jeu, le numéro du joueur
  * Sortie: un booléen
  */
-bool gagnantColonne(char jeu[TAILLE_X][TAILLE_X], int joueur);
+bool gagnantColonne(char jeu[TAILLE_X][TAILLE_Y], int joueur);
 
 /*
  * Cette fonction vérifie si un joueur a une diagonale
@@ -48,6 +48,6 @@ bool gagnantColonne(char jeu[TAILLE_X][TAILLE_X], int joueur);
  * Entrée: le tableau du jeu, le numéro du joueur
  * Sortie: un booléen
  */
-bool gagnantDiagonale(char jeu[TAILLE_X][TAILLE_X], int joueur);
+bool gagnantDiagonale(char jeu[TAILLE_X][TAILLE_Y], int joueur);
 
 #endif

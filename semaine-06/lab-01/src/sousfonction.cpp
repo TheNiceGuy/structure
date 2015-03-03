@@ -4,14 +4,14 @@
 
 using namespace std;
 
-bool caseVide(char jeu[TAILLE_X][TAILLE_X], int x, int y) {
+bool caseVide(char jeu[TAILLE_X][TAILLE_Y], int x, int y) {
     if(jeu[x][y] == VIDE)
         return true;
     else
         return false;
 }
 
-bool jeuPlein(char jeu[TAILLE_X][TAILLE_X]) {
+bool jeuPlein(char jeu[TAILLE_X][TAILLE_Y]) {
     int x, y;
 
     /*
@@ -26,7 +26,7 @@ bool jeuPlein(char jeu[TAILLE_X][TAILLE_X]) {
     return true;
 }
 
-bool gagnantLigne(char jeu[TAILLE_X][TAILLE_X], int joueur) {
+bool gagnantLigne(char jeu[TAILLE_X][TAILLE_Y], int joueur) {
     int x, y, somme;
 
     /*
@@ -49,7 +49,7 @@ bool gagnantLigne(char jeu[TAILLE_X][TAILLE_X], int joueur) {
     return false;
 }
 
-bool gagnantColonne(char jeu[TAILLE_X][TAILLE_X], int joueur) {
+bool gagnantColonne(char jeu[TAILLE_X][TAILLE_Y], int joueur) {
     int x, y, somme;
 
     /*
@@ -72,7 +72,7 @@ bool gagnantColonne(char jeu[TAILLE_X][TAILLE_X], int joueur) {
     return false;
 }
 
-bool gagnantDiagonale(char jeu[TAILLE_X][TAILLE_X], int joueur) {
+bool gagnantDiagonale(char jeu[TAILLE_X][TAILLE_Y], int joueur) {
     int x, y, somme;
 
     /*
