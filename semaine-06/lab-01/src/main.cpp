@@ -5,7 +5,6 @@
  */
 
 #include <iostream>
-#include <vector>
 #include "fonction.h"
 #include "config.h"
 

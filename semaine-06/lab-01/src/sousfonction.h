@@ -1,7 +1,6 @@
 #ifndef SOUSFONCTION_H
 #define SOUSFONCTION_H
 
-#include <vector>
 #include "config.h"
 
 using namespace std;

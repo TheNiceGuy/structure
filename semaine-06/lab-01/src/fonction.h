@@ -1,7 +1,6 @@
 #ifndef FONCTION_H
 #define FONCTION_H
 
-#include <vector>
 #include "sousfonction.h"
 #include "config.h"
 
