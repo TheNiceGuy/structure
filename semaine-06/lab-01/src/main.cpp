@@ -1,7 +1,7 @@
 /*
  * Auteur: Gabriel-Andrew Pollo Guilbert
  *         Samuel Piché
- * Date  : 2 Mars 20159
+ * Date  : 2 Mars 2015
  */
 
 #include <iostream>
@@ -23,6 +23,9 @@ int main() {
     bool quit;
     char choix;
 
+    cout << "Bienvenue à ce fantastique jeu de tic-tac-to. " << endl <<
+            "Vous aurez à rentrer des positions. L'origine est en haut à gauche." << endl << endl;
+
     do {
         jouerJeu();
 
@@ -43,6 +46,8 @@ int main() {
             break;
         }
     } while(!quit);
+
+    cout << "Merci d'avoir jouer à mon jeu." << endl;
 
     return 0;
 }

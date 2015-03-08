@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <limits>
 #include "fonction.h"
 #include "config.h"
 
@@ -17,6 +18,7 @@ void jouerJeu() {
      */
     do {
         prochainJoueur(joueur);
+        system("clear");
         afficherJeu(jeu);
         demanderPosition(jeu, joueur);
     } while(!jeuGagnant(jeu, joueur) && !jeuPlein(jeu));
@@ -27,7 +29,9 @@ void jouerJeu() {
      * nulle.
      */
     afficherJeu(jeu);
-    if(jeuPlein(jeu))
+    if(jeuGagnant(jeu, joueur))
+        cout << "Le joueur " << joueur+1 << " a gagné."  << endl;
+    else if(jeuPlein(jeu))
         cout << "La partie est nulle!" << endl;
 }
 
@@ -72,11 +76,17 @@ void demanderPosition(char jeu[TAILLE_X][TAILLE_Y], int joueur) {
          * du jeu.
          */
         do {
-            cout << "Position x: ";
+            cout << "(joueur " << joueur+1 << ") Position x: ";
             cin >> x;
-            cin.ignore();
-            if(x < 0 || x >= TAILLE_X)
-                cout << "Veuillez entrer une valeur entre 0 et " << TAILLE_X-1 << "." << endl;
+            if(!cin.fail()) {
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                if(x < 0 || x >= TAILLE_X)
+                    cout << "Veuillez entrer une valeur entre 0 et " << TAILLE_X-1 << "." << endl;
+            } else {
+                x = TAILLE_X;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
         } while(x < 0 || x >= TAILLE_X);
 
         /*
@@ -85,18 +95,24 @@ void demanderPosition(char jeu[TAILLE_X][TAILLE_Y], int joueur) {
          * du jeu.
          */
         do {
-            cout << "Position y: ";
+            cout << "(joueur " << joueur+1 << ") Position y: ";
             cin >> y;
             cin.ignore();
-            if(y < 0 || y >= TAILLE_Y)
-                cout << "Veuillez entrer une valeur entre 0 et " << TAILLE_Y-1 << "." << endl;
+            if(!cin.fail()) {
+                if(y < 0 || y >= TAILLE_Y)
+                    cout << "Veuillez entrer une valeur entre 0 et " << TAILLE_Y-1 << "." << endl;
+            } else {
+                y = TAILLE_Y;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
         } while(y < 0 || y >= TAILLE_Y);
 
         /*
          * Écrire un message d'erreur si la case n'est pas vide.
          */
         if(!caseVide(jeu, x, y))
-            cout << "Veuillez choisir une autre case." << endl;
+            cout << "Place déjà prise ou invalide." << endl;
     } while(!caseVide(jeu, x, y));
 
     /*
