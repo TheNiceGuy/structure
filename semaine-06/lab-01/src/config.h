@@ -11,3 +11,9 @@
 #define JOUEUR0    'X'
 #define JOUEUR1    'O'
 #define VIDE       '_'
+
+#ifdef __linux__
+    #define CLEAR "clear"
+#else
+    #define CLEAR "cls"
+#endif
