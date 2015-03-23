@@ -18,9 +18,9 @@ void jouerJeu() {
      */
     do {
         prochainJoueur(joueur);
-        system("clear");
         afficherJeu(jeu);
         demanderPosition(jeu, joueur);
+        system(CLEAR);
     } while(!jeuGagnant(jeu, joueur) && !jeuPlein(jeu));
 
     /*

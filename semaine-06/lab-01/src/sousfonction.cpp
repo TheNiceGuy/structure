@@ -16,7 +16,8 @@ bool jeuPlein(char jeu[TAILLE_X][TAILLE_Y]) {
 
     /*
      * On regarde chacune des cases pour voir si elle
-     * est vide. On quitte dès qu'une case est trouvée.
+     * est vide. On quitte dès qu'une case utilisée est
+     * trouvée.
      */
     for(x = 0; x < TAILLE_X; x++)
         for(y = 0; y < TAILLE_Y; y++)
@@ -102,14 +103,14 @@ bool gagnantDiagonale(char jeu[TAILLE_X][TAILLE_Y], int joueur) {
      * Trouver la diagonale où les coordonnées respectent
      * l'équation suivante:
      *
-     *          x+y-MAX+1=0
+     *          x+y-MAX+1=0 <=> x+y=MAX-1
      *
      * Si MAX est la taille du tableau dans les deux dimensions.
      */
     somme = 0;
     for(x = 0; x < TAILLE_X; x++) {
         for(y = 0; y < TAILLE_Y; y++)
-            if(x+y-TAILLE_X+1 == 0)
+            if(x+y == TAILLE_X-1)
                 somme = somme+(int)jeu[x][y];
 
         if(joueur == 0 && somme == (int)JOUEUR0*3)
