@@ -16,7 +16,7 @@ Voiture::Voiture(int prix, int nb_porte) {
 Voiture::~Voiture() {
 }
 
-int Voiture::nbrRoues() {
+int Voiture::nbrRoues() const {
     return 4;
 }
 

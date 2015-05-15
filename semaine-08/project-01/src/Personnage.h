@@ -8,7 +8,6 @@
 class Personnage {
     private:
         int m_hp;
-        int m_mp;
         int m_weapon_dmg;
         std::string m_name;
         std::string m_weapon_name;

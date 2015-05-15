@@ -9,7 +9,7 @@ int main() {
     Vehicule* v2 = NULL;
     Vehicule* v3 = NULL;
 
-    v1 = new Vehicule(45640);
+    v1 = new Moto(45640);
     v2 = new Voiture(28500, 4);
     v3 = new Moto(1540);
 

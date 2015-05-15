@@ -14,7 +14,7 @@ Moto::Moto(int prix) {
 Moto::~Moto() {
 }
 
-int Moto::nbrRoues() {
+int Moto::nbrRoues() const {
     return 2;
 }
 

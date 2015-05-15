@@ -7,6 +7,7 @@ class Vehicule {
         Vehicule(int prix);
         virtual ~Vehicule();
         virtual void affiche() const;
+        static int nombreInstances;
 
     protected:
         int m_prix;

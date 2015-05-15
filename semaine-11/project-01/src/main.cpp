@@ -15,7 +15,7 @@ int main() {
     listeVehicules.push_back(new Moto(13060));
     listeVehicules.push_back(new Voiture(1000, 2));
 
-    cout << Vehicule::nombreInstances() << endl;
+    cout << Vehicule::nombreInstances << endl;
 
     j = (int)listeVehicules.size();
     for(i = 0; i < j; i++) {

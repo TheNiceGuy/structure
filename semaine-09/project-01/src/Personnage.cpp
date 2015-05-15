@@ -6,14 +6,12 @@ using namespace std;
 
 Personnage::Personnage(string name) :
 m_hp(MAX_HP),
-m_mp(0),
 m_name(name) {
 
 }
 
 Personnage::Personnage(string name, string weapon, int dmg) :
 m_hp(MAX_HP),
-m_mp(0),
 m_name(name),
 m_weapon(weapon, dmg) {
 

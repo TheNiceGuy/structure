@@ -6,7 +6,6 @@ using namespace std;
 
 Personnage::Personnage(string name) :
 m_hp(MAX_HP),
-m_mp(0),
 m_weapon_dmg(20),
 m_name(name),
 m_weapon_name("la force") {
@@ -15,7 +14,6 @@ m_weapon_name("la force") {
 
 Personnage::Personnage(string name, string weapon, int dmg) :
 m_hp(MAX_HP),
-m_mp(0),
 m_weapon_dmg(dmg),
 m_name(name),
 m_weapon_name(weapon) {
