@@ -149,6 +149,7 @@ function buildall {
 	DIR=$(pwd)
 
 	find ./ -iname "makefile" | sed 's/makefile//g' | while read FOLDER; do
+        echo -e "\033[36mCompiling..$FOLDER\033[0m"
 		cd "$FOLDER"
 		build
 		echo
